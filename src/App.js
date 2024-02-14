@@ -1,9 +1,9 @@
-import NavigationPanel from './components/NavigationPanel';
+import AddCar from './pages/AddCar';
 
 function App() {
   return (
     <div>
-      <NavigationPanel />
+      <AddCar />
     </div>
   );
 }
