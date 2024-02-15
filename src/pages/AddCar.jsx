@@ -10,16 +10,16 @@ export default function AddCar() {
         className="flex flex-col w-full gap-3 md:w-3/4 mx-auto"
       >
         <div>
-          <input type="text" placeholder="Car Name" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" />
+          <input type="text" autoComplete="car name" placeholder="Car Name" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" />
         </div>
         <div>
-          <textarea id="message" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Car Description..." />
+          <textarea id="message" rows="4" autoComplete="car description" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Car Description..." />
         </div>
         <div>
-          <input type="text" placeholder="Manufacturer Name" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" />
+          <input type="text" placeholder="Manufacturer Name" autoComplete="Manufacturer name" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" />
         </div>
         <div>
-          <input type="number" step="any" min={0} placeholder="Price" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+          <input type="number" autoComplete="car price" step="any" min={0} placeholder="Price" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
         </div>
         <div>
           {/* eslint-disable jsx-a11y/label-has-associated-control */}
