@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function NavigationPanel() {
+  const navLinkClass = 'w-full flex items-center p-2 text-gray-900 group hover:bg-lime-500 focus:bg-lime-500 hover:text-white';
   const [openSidebar, setOpenSidebar] = useState(false);
 
   const handleSidebar = (e) => {
@@ -40,27 +41,27 @@ export default function NavigationPanel() {
         <div className="h-full px-3 py-4 overflow-y-auto pt-28">
           <ul className="space-y-2 font-medium">
             <li>
-              <button type="button" className="w-full flex items-center p-2 text-gray-900 group hover:bg-lime-500 focus:bg-lime-500">
+              <button type="button" className={navLinkClass}>
                 <span className="ms-3">Cars</span>
               </button>
             </li>
             <li>
-              <button type="button" className="w-full flex items-center p-2 text-gray-900 group  hover:bg-lime-500  focus:bg-lime-500">
+              <button type="button" className={navLinkClass}>
                 <span className="ms-3">Reserve Car</span>
               </button>
             </li>
             <li>
-              <button type="button" className="w-full flex items-center p-2 text-gray-900 group hover:bg-lime-500  focus:bg-lime-500">
+              <button type="button" className={navLinkClass}>
                 <span className="ms-3">My Reservations</span>
               </button>
             </li>
             <li>
-              <Link to="/add-car" className="w-full flex items-center p-2 text-gray-900 group  hover:bg-lime-500 focus:bg-lime-500">
+              <Link to="/add-car" className={navLinkClass}>
                 <span className="ms-3">Add Car</span>
               </Link>
             </li>
             <li>
-              <Link to="/delete-car" className="w-full flex items-center p-2 text-gray-900 group hover:bg-lime-500 focus:bg-lime-500">
+              <Link to="/delete-car" className={navLinkClass}>
                 <span className="ms-3">Delete Car</span>
               </Link>
             </li>
