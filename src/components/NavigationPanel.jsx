@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function NavigationPanel() {
-  const navLinkClass = 'w-full flex items-center p-2 text-gray-900 group hover:bg-lime-500 focus:bg-lime-500 hover:text-white';
+  const navLinkClass = 'w-full flex items-center p-2 text-gray-900 group hover:bg-lime-500 focus:bg-lime-500 hover:text-white focus:text-white';
   const [openSidebar, setOpenSidebar] = useState(false);
 
   const handleSidebar = (e) => {
@@ -40,6 +40,16 @@ export default function NavigationPanel() {
         </div>
         <div className="h-full px-3 py-4 overflow-y-auto pt-28">
           <ul className="space-y-2 font-medium">
+            <li>
+              <Link to="/login" className={navLinkClass}>
+                <span className="ms-3">Login</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/signup" className={navLinkClass}>
+                <span className="ms-3">Signup</span>
+              </Link>
+            </li>
             <li>
               <button type="button" className={navLinkClass}>
                 <span className="ms-3">Cars</span>
