@@ -41,7 +41,7 @@ export default function NavigationPanel() {
         <div className="h-full px-3 py-4 overflow-y-auto pt-28">
           <ul className="space-y-2 font-medium">
             <li>
-              <Link to="/login" className={navLinkClass}>
+              <Link to="/" className={navLinkClass}>
                 <span className="ms-3">Login</span>
               </Link>
             </li>
