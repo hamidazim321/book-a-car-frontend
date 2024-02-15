@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function NavigationPanel() {
   const [openSidebar, setOpenSidebar] = useState(false);
@@ -54,14 +55,14 @@ export default function NavigationPanel() {
               </button>
             </li>
             <li>
-              <button type="button" className="w-full flex items-center p-2 text-gray-900 group  hover:bg-lime-500 focus:bg-lime-500">
+              <Link to="/add-car" className="w-full flex items-center p-2 text-gray-900 group  hover:bg-lime-500 focus:bg-lime-500">
                 <span className="ms-3">Add Car</span>
-              </button>
+              </Link>
             </li>
             <li>
-              <button type="button" className="w-full flex items-center p-2 text-gray-900 group hover:bg-lime-500 focus:bg-lime-500">
+              <Link to="/delete-car" className="w-full flex items-center p-2 text-gray-900 group hover:bg-lime-500 focus:bg-lime-500">
                 <span className="ms-3">Delete Car</span>
-              </button>
+              </Link>
             </li>
           </ul>
         </div>
