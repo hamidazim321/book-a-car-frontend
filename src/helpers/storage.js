@@ -1,11 +1,16 @@
-const saveLogin = (user) => {
-  localStorage.setItem('user', JSON.stringify(user));
+const saveLogin = (data) => {
+  localStorage.setItem('user', JSON.stringify(data.user));
+  localStorage.setItem('token', JSON.stringify(data.token));
 };
 
-const getLogin = () => JSON.parse(localStorage.getItem('user'));
+const getUser = () => JSON.parse(localStorage.getItem('user'));
+const getToken = () => JSON.parse(localStorage.getItem('token'));
 
 const removeLogin = () => {
   localStorage.removeItem('user');
+  localStorage.removeItem('token');
 };
 
-export { saveLogin, getLogin, removeLogin };
+export {
+  saveLogin, getToken, getUser, removeLogin,
+};

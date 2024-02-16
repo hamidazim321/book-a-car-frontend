@@ -3,6 +3,7 @@ import { loginUser, signupUser, logoutUser } from './authThunk';
 
 const initialState = {
   user: null,
+  token: null,
   loading: false,
   error: null,
 };
