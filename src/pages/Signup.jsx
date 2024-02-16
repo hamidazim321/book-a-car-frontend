@@ -11,7 +11,6 @@ export default function Signup() {
       console.log('Passwords do not match');
       return;
     }
-    console.log(formData, formData.username, formData.email);
     // dispatch(signupUser(formData));
     saveLogin({ user: { formData }, token: 'fake' }); // This is a fake login
     e.target.reset();
@@ -25,7 +24,7 @@ export default function Signup() {
       <form
         onSubmit={handleSubmit}
         method="post"
-        className="flex flex-col w-full gap-3 md:w-3/4 mx-auto"
+        className="flex flex-col w-full gap-3 md:w-1/2 mx-auto"
       >
         <div>
           <input type="text" autoComplete="username" placeholder="Username" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" name="username" />

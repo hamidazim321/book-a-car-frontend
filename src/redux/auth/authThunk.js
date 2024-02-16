@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { saveLogin, removeLogin } from '../../helpers/storage';
+import APIURL from '../../helpers/staticSharedVariables';
 
-const URL = 'https://dummyjson.com/auth';
+const AuthURL = `${APIURL}/auth`;
 
 const loginUser = createAsyncThunk('auth/loginUser', async (userData, { rejectWithValue }) => {
   try {
-    const response = await axios.post(`${URL}/login`, userData);
+    const response = await axios.post(`${AuthURL}/login`, userData);
     saveLogin(response.data);
     return response.data;
   } catch (error) {
@@ -16,7 +17,7 @@ const loginUser = createAsyncThunk('auth/loginUser', async (userData, { rejectWi
 
 const signupUser = createAsyncThunk('auth/signupUser', async (userData, { rejectWithValue }) => {
   try {
-    const response = await axios.post('/api/v1/auth/signup', userData);
+    const response = await axios.post(`${AuthURL}/signup`, userData);
     return response.data;
   } catch (error) {
     return rejectWithValue(error.message);
@@ -25,7 +26,7 @@ const signupUser = createAsyncThunk('auth/signupUser', async (userData, { reject
 
 const logoutUser = createAsyncThunk('auth/logoutUser', async (_, { rejectWithValue }) => {
   try {
-    const response = await axios.post('/api/v1/auth/logout');
+    const response = await axios.delete(`${AuthURL}/logout`);
     removeLogin();
     return response.data;
   } catch (error) {
