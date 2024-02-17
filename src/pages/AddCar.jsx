@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { addCar } from '../redux/car/carThunk';
 
 export default function AddCar() {
   const dispatch = useDispatch();
+  const fileInput = useRef();
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    dispatch(addCar(formData));
+    const reader = new FileReader();
+    const file = fileInput.current.files[0];
+    reader.onloadend = () => {
+      const formData = new FormData();
+      formData.append('car[name]', e.target.elements['car[name]'].value);
+      formData.append('car[description]', e.target.elements['car[description]'].value);
+      formData.append('car[manufacturer]', e.target.elements['car[manufacturer]'].value);
+      formData.append('car[price]', e.target.elements['car[price]'].value);
+      formData.append('car[image]', reader.result);
+      dispatch(addCar(formData));
+    };
+    reader.readAsDataURL(file);
   };
   return (
     <div className="h-screen flex flex-col justify-center md:p-0">
@@ -33,7 +44,7 @@ export default function AddCar() {
         <div>
           {/* eslint-disable jsx-a11y/label-has-associated-control */}
           <label className="block mb-2 text-sm font-medium text-gray-900" htmlFor="file-input">Car Image</label>
-          <input type="file" name="car[image]" id="file-input" className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg p-1 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none" />
+          <input ref={fileInput} type="file" name="car[image]" accept="image/*" id="file-input" className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg p-1 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none" />
           {/* eslint-enable jsx-a11y/label-has-associated-control */}
         </div>
         <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Add Car</button>
