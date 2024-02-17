@@ -7,18 +7,18 @@ export default function AddCar() {
   const fileInput = useRef();
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData(e.target);
     const reader = new FileReader();
     const file = fileInput.current.files[0];
-    reader.onloadend = () => {
-      const formData = new FormData();
-      formData.append('car[name]', e.target.elements['car[name]'].value);
-      formData.append('car[description]', e.target.elements['car[description]'].value);
-      formData.append('car[manufacturer]', e.target.elements['car[manufacturer]'].value);
-      formData.append('car[price]', e.target.elements['car[price]'].value);
-      formData.append('car[image]', reader.result);
-      dispatch(addCar(formData));
-    };
-    reader.readAsDataURL(file);
+    if (file) {
+      reader.onloadend = () => {
+        formData.set('car[image]', reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      formData.delete('car[image]');
+    }
+    dispatch(addCar(formData));
   };
   return (
     <div className="h-screen flex flex-col justify-center md:p-0">
@@ -30,16 +30,16 @@ export default function AddCar() {
         onSubmit={handleSubmit}
       >
         <div>
-          <input type="text" name="car[name]" autoComplete="car name" placeholder="Car Name" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" />
+          <input required type="text" name="car[name]" autoComplete="car name" placeholder="Car Name" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" />
         </div>
         <div>
-          <textarea id="message" name="car[description]" rows="4" autoComplete="car description" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Car Description..." />
+          <textarea required id="message" name="car[description]" rows="4" autoComplete="car description" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Car Description..." />
         </div>
         <div>
-          <input type="text" name="car[manufacturer]" placeholder="Manufacturer Name" autoComplete="Manufacturer name" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" />
+          <input required type="text" name="car[manufacturer]" placeholder="Manufacturer Name" autoComplete="Manufacturer name" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" />
         </div>
         <div>
-          <input type="number" name="car[price]" autoComplete="car price" step="any" min={0} placeholder="Price" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+          <input required type="number" name="car[price]" autoComplete="car price" step="any" min={0} placeholder="Price" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
         </div>
         <div>
           {/* eslint-disable jsx-a11y/label-has-associated-control */}
