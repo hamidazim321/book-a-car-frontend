@@ -19,7 +19,7 @@ export const deleteCar = createAsyncThunk(
   'car/deleteCar',
   async (id) => {
     try {
-      await axios.delete(`${BASE_URL}${CARS_PATH}${id}`);
+      await axios.delete(`${BASE_URL}${CARS_PATH}/${id}`);
       return id;
     } catch (error) {
       return isRejectedWithValue(error.message);
