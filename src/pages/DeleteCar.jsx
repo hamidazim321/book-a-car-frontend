@@ -32,6 +32,7 @@ export default function DeleteCar() {
           && cars.map((car) => (
             <li className="pb-3 sm:pb-4" key={car.id}>
               <div>
+                <img src={car.image} alt={car.name} />
                 <p className="font-semibold text-xl">
                   {car.name}
                 </p>

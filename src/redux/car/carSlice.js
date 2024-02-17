@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteCar, fetchCars } from './carThunk';
+import { addCar, deleteCar, fetchCars } from './carThunk';
 
 const initialState = {
   cars: [],
@@ -38,6 +38,20 @@ const carSlice = createSlice({
         loading: false,
         error: false,
         cars: state.cars.filter((car) => car.id !== payload),
+      }))
+      .addCase(addCar.pending, (state) => ({
+        ...state,
+        loading: true,
+      }))
+      .addCase(addCar.fulfilled, (state, { payload }) => ({
+        ...state,
+        loading: false,
+        cars: [...state.cars, payload],
+      }))
+      .addCase(addCar.rejected, (state, { error }) => ({
+        ...state,
+        error,
+        loading: false,
       }));
   },
 });

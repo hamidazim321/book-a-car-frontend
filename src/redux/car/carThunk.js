@@ -26,3 +26,19 @@ export const deleteCar = createAsyncThunk(
     }
   },
 );
+
+export const addCar = createAsyncThunk(
+  'car/addCar',
+  async (formData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(`${BASE_URL}${CARS_PATH}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
