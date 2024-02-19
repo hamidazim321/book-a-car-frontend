@@ -23,5 +23,10 @@ const FetchCars = () => {
           (prevIndex) => (prevIndex - 1 + totalGroups) % totalGroups
         );
       };
+      const displayByThree = cars.slice(
+        currentGroupIndex * groupSize,
+        currentGroupIndex * groupSize + groupSize
+      );
+    
     
 }  
