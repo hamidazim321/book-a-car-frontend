@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import { getUser } from './helpers/storage';
 import HomePage from './pages/HomePage';
+
 function App() {
   const loggedIn = getUser() !== null;
 
