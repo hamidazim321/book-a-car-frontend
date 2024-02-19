@@ -17,6 +17,8 @@ function App() {
             <Route index element={<AddCar />} />
             <Route path="/add-car" element={<AddCar />} />
             <Route path="/delete-car" element={<DeleteCar />} />
+            <Route path="/reserve-car" element={<AddCar />} />
+            <Route path="/reserve-car/:id" element={<AddCar />} />
             <Route path="*" element={<AddCar />} />
           </>
         )}
