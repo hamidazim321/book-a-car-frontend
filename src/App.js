@@ -14,6 +14,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         {loggedIn && (
           <>
+            <Route index element={<HomePage />} />
             <Route index element={<AddCar />} />
             <Route path="/add-car" element={<AddCar />} />
             <Route path="/delete-car" element={<DeleteCar />} />
