@@ -59,9 +59,9 @@ export default function NavigationPanel() {
                   </button>
                 </li>
                 <li>
-                  <button type="button" className={navLinkClass}>
+                  <Link to="/reserve-car" className={navLinkClass}>
                     <span className="ms-3">Reserve Car</span>
-                  </button>
+                  </Link>
                 </li>
                 <li>
                   <button type="button" className={navLinkClass}>

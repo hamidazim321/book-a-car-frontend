@@ -50,13 +50,15 @@ const logoutUser = createAsyncThunk('auth/logoutUser', async (_, { rejectWithVal
   };
   console.log(headers);
   try {
-    const response = await axios.delete(`${AuthURL}/logout`, {
-      headers,
-
-    });
+    const response = await axios.delete(`${AuthURL}/logout`, { headers });
     removeLogin();
     return response.data;
   } catch (error) {
+    if (error.response.status === 401) {
+      removeLogin();
+      window.location.reload();
+      return rejectWithValue('You need to login');
+    }
     return rejectWithValue(error.message);
   }
 });
