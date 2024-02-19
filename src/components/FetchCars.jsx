@@ -27,6 +27,15 @@ const FetchCars = () => {
         currentGroupIndex * groupSize,
         currentGroupIndex * groupSize + groupSize
       );
+
+      useEffect(() => {
+        const fetchCarsData = async () => {
+          const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+          setCars(res.data);
+        };
+        fetchCarsData();
+      }, []);
+    
     
     
 }  
