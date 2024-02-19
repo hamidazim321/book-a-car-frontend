@@ -5,6 +5,8 @@ import DeleteCar from './pages/DeleteCar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import { getUser } from './helpers/storage';
+import CarDetails from './pages/CarDetails';
+import MyReservation from './pages/MyReservation';
 import HomePage from './pages/HomePage';
 
 function App() {
@@ -20,6 +22,14 @@ function App() {
             <Route path="/add-car" element={<AddCar />} />
             <Route path="/delete-car" element={<DeleteCar />} />
             <Route path="*" element={<AddCar />} />
+            <Route
+              path="/my-reservations"
+              element={<MyReservation />}
+            />
+            <Route
+              path="/car-details/:carId"
+              element={<CarDetails />}
+            />
           </>
         )}
         {!loggedIn && (
