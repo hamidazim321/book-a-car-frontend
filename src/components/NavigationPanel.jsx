@@ -49,9 +49,9 @@ export default function NavigationPanel() {
             {loggedIn && (
               <>
                 <li>
-                  <button type="button" className={navLinkClass}>
+                  <Link to="/" className={navLinkClass}>
                     <span className="ms-3">Cars</span>
-                  </button>
+                  </Link>
                 </li>
                 <li>
                   <button type="button" className={navLinkClass}>
