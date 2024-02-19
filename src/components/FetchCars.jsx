@@ -65,6 +65,20 @@ const FetchCars = () => {
           ) : (
             <p> no Data found</p>
           )}
+
+<>
+        <button
+          type="button"
+          onClick={handlePrevGroup}
+          className="absolute top-0 -left-15 z-30 flex items-center justify-center h-full px-4 cursor-pointer"
+        >
+          <span className="inline-flex btn btn-primary bg-lime-500 items-center justify-center w-10 h-10 hover:bg-lime-500">
+            <FaChevronLeft />
+            {' '}
+            <span className="sr-only">Previous</span>
+          </span>
+        </button>
+
     
     
     
