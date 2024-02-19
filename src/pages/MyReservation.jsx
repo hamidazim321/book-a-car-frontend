@@ -2,7 +2,7 @@ import React from 'react';
 
 const MyReservation = () => (
   <div>
-    <h1>My Reservation</h1>
+    <h1>My Reservation page will be displayed here</h1>
   </div>
 );
 
