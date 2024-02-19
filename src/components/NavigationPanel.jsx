@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getUser, removeLogin } from '../helpers/storage';
+import { useDispatch } from 'react-redux';
+import { getUser } from '../helpers/storage';
+import { logoutUser } from '../redux/auth/authThunk';
 
 export default function NavigationPanel() {
   const navLinkClass = 'w-full flex items-center p-2 text-gray-900 group hover:bg-lime-500 focus:bg-lime-500 hover:text-white focus:text-white';
   const [openSidebar, setOpenSidebar] = useState(false);
   const loggedIn = getUser() !== null;
+  const dispatch = useDispatch();
 
   const handleSidebar = (e) => {
     e.stopPropagation();
@@ -13,8 +16,9 @@ export default function NavigationPanel() {
   };
 
   const handleLogout = () => {
-    removeLogin();
-    window.location.href = '/';
+    dispatch(logoutUser());
+    // window.location.reload();
+    // window.location.href = '/';
   };
   useEffect(() => {
     const closeSidebar = () => {

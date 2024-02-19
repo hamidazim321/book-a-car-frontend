@@ -1,20 +1,23 @@
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import getFormData from '../helpers/getFormData';
-import { saveLogin } from '../helpers/storage';
-// import { loginUser } from '../redux/auth/authThunk';
+// import { saveLogin } from '../helpers/storage';
+import { loginUser } from '../redux/auth/authThunk';
 
 export default function Login() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = getFormData(e.target);
 
     // later we will use dispatch to send the object as it is to the server
-    // dispatch(loginUser(formData));
-    saveLogin({ user: { formData }, token: 'fake' }); // This is a fake login
-    e.target.reset();
-    window.location.reload();
+    dispatch(loginUser(formData))
+      .then((response) => {
+        console.log(response);
+        // saveLogin(response); // This is a fake login
+        // e.target.reset();
+        // window.location.reload();
+      });
   };
 
   return (
