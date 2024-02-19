@@ -1,5 +1,4 @@
 const saveLogin = (res) => {
-  console.log(res);
   const { user, token } = {
     user: res.data.data.user,
     token: res.headers.authorization,

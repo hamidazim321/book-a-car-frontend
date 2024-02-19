@@ -1,4 +1,3 @@
-// import { saveLogin } from '../helpers/storage';
 import { useDispatch } from 'react-redux';
 import { signupUser } from '../redux/auth/authThunk';
 import getFormData from '../helpers/getFormData';
@@ -14,10 +13,11 @@ export default function Signup() {
       console.log('Passwords do not match');
       return;
     }
-    dispatch(signupUser(formData));
-    // saveLogin({ user: { formData }, token: 'fake' }); // This is a fake login
-    // e.target.reset();
-    // window.location.reload();
+    dispatch(signupUser(formData))
+      .then(() => {
+        e.target.reset();
+        window.location.reload();
+      });
   };
   return (
     <div className="h-screen flex flex-col justify-center md:p-0">

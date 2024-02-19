@@ -16,9 +16,10 @@ export default function NavigationPanel() {
   };
 
   const handleLogout = () => {
-    dispatch(logoutUser());
-    // window.location.reload();
-    // window.location.href = '/';
+    dispatch(logoutUser())
+      .then(() => {
+        window.location.reload();
+      });
   };
   useEffect(() => {
     const closeSidebar = () => {
