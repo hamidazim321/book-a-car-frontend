@@ -14,4 +14,14 @@ const FetchCars = () => {
     const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
     const groupSize = 3;
     const totalGroups = Math.ceil(cars.length / groupSize);
+    const handleNextGroup = () => {
+        setCurrentGroupIndex((prevIndex) => (prevIndex + 1) % totalGroups);
+      };
+    
+      const handlePrevGroup = () => {
+        setCurrentGroupIndex(
+          (prevIndex) => (prevIndex - 1 + totalGroups) % totalGroups
+        );
+      };
+    
 }  
