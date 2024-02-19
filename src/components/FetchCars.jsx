@@ -92,9 +92,7 @@ const FetchCars = () => {
       </>
     </div>
 
+);
+};
 
-    
-    
-    
-    
-}  
+export default FetchCars;
