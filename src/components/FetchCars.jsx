@@ -35,6 +35,37 @@ const FetchCars = () => {
         };
         fetchCarsData();
       }, []);
+
+      return (
+        <div className="flex flex-col gap-8 sm:flex-row mt-8">
+          {displayByThree.length > 0 ? (
+            displayByThree.map((car) => (
+              <Link to={`/car-details/${car.id}`} key={car.id} className="card">
+                <div className="avatar">
+                  <div className="rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <img
+                      src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                      alt="avatar"
+                    />
+                  </div>
+                </div>
+                <div className="card-body">
+                  <p>{splitSentence(car.title, 4)}</p>
+                  <div className="flex items-center justify-between">
+                    <div className="badge badge-outline">
+                      <FaFacebookF />
+                    </div>
+                    <div className="badge badge-outline">
+                      <FaLinkedinIn />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))
+          ) : (
+            <p> no Data found</p>
+          )}
+    
     
     
     
