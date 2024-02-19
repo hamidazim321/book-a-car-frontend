@@ -79,6 +79,20 @@ const FetchCars = () => {
           </span>
         </button>
 
+        <button
+          type="button"
+          onClick={handleNextGroup}
+          className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+        >
+          <span className="inline-flex btn btn-primary bg-lime-500 items-center justify-center w-10 h-10 hover:bg-lime-500">
+            <FaChevronRight />
+            <span className="sr-only">Next</span>
+          </span>
+        </button>
+      </>
+    </div>
+
+
     
     
     
