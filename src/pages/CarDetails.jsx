@@ -26,5 +26,26 @@ const CarDetails = () => {
               </div>
             </div>
           </div>
+          <div className="w-1/3">
+        <div className=" overflow-x-auto">
+          <table className="table table-zebra">
+            <tbody>
+              <tr>
+                <td>{car.title}</td>
+              </tr>
+              <tr>
+                <td>{car.body}</td>
+              </tr>
+              <tr>
+                <td>{car.userId}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 )
 }    
