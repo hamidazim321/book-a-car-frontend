@@ -43,7 +43,7 @@ const FetchCars = () => {
 
   return (
     /* JSX elements start */
-    <div>
+    <div className="relative">
       <h1 className="text-4xl font-bold text-center my-4">Latest Models</h1>
       <h2 className="text-lg text-center">Please select a car model.</h2>
       <div className="flex flex-col gap-8 sm:flex-row mt-8">
@@ -78,7 +78,7 @@ const FetchCars = () => {
           <button
             type="button"
             onClick={handlePrevGroup}
-            className="absolute top-0 -left-15 z-30 flex items-center justify-center h-full px-4 cursor-pointer"
+            className="absolute top-1/2 -left-15 z-30 flex items-center justify-center h-auto px-4 cursor-pointer"
           >
             <span className="inline-flex btn btn-primary bg-lime-500 items-center justify-center w-10 h-10 hover:bg-lime-500">
               <FaChevronLeft />
@@ -89,7 +89,7 @@ const FetchCars = () => {
           <button
             type="button"
             onClick={handleNextGroup}
-            className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            className="absolute top-1/2 end-0 z-30 flex items-center justify-center h-auto px-4 cursor-pointer group focus:outline-none"
           >
             <span className="inline-flex btn btn-primary bg-lime-500 items-center justify-center w-10 h-10 hover:bg-lime-500">
               <FaChevronRight />
