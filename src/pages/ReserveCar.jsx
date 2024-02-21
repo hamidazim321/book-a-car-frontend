@@ -11,10 +11,12 @@ const ReserveCar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = getFormData(e.target);
-    dispatch(createReservation(formData));
-    e.target.reset();
-    window.location.reload();
-    // navigate('/reservations');
+    dispatch(createReservation(formData))
+      .then(() => {
+        e.target.reset();
+        // window.location.reload();
+        // navigate('/reservations');
+      });
   };
 
   return (
