@@ -4,7 +4,7 @@ import { addCar } from '../redux/car/carThunk';
 import ErrorAlert from '../components/ErrorAlert';
 
 export default function AddCar() {
-  const { error } = useSelector((state) => state.cars);
+  const { error } = useSelector((state) => state.car);
   const dispatch = useDispatch();
   const fileInput = useRef();
   const handleSubmit = (e) => {
@@ -27,7 +27,12 @@ export default function AddCar() {
       <div className="mb-3">
         <h1 className="text-center font-mono mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900">Add a car</h1>
       </div>
-      {error && <ErrorAlert message={error.message} />}
+      {error
+        && (
+          <div className="mb-3 w-auto mx-auto">
+            <ErrorAlert message={error.message === 'Rejected' ? 'You Are not Authorized For This Action' : error.message} />
+          </div>
+        )}
       <form
         className="flex flex-col w-full gap-3 md:w-3/4 mx-auto"
         onSubmit={handleSubmit}

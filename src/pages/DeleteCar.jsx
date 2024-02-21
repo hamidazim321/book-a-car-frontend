@@ -2,20 +2,20 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCar, fetchCars } from '../redux/car/carThunk';
 import LoadingSpinner from '../components/LoadingSpinner';
+import ErrorAlert from '../components/ErrorAlert';
 
 export default function DeleteCar() {
-  // const tempCars = ['car1', 'car2', 'car3', 'car4', 'car5', 'car6'];
   const { cars, error, loading } = useSelector((state) => state.car);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCars());
   }, []);
   return (
-    <section className="p-4">
+    <section className="p-4 mt-6">
       {
         error
         && (
-          <div role="alert">{error.message}</div>
+          <ErrorAlert message={error.message === 'Rejected' ? 'You Are not Authorized For This Action' : error.message} />
         )
       }
       {
