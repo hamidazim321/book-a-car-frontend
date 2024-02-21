@@ -8,15 +8,5 @@
 }
 
 .reserve-main .background-image {
-  /* use this url: https://images.unsplash.com/photo-1503376780353-7e6692767b70
-    as the background image for the reserve-main class
-    and make sure the image is fixed and covers the entire background
-    and mask the image with a color of rgba(150, 191, 15, 0.67)
-  */
-
   background: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70') no-repeat center center/cover fixed;
-  background-color: #96bf0fac;
-
-  /* background: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70') no-repeat center center/cover fixed;
-  background-color: #96bf0fac; */
 }
