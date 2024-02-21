@@ -5,6 +5,9 @@ import DeleteCar from './pages/DeleteCar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import { getUser } from './helpers/storage';
+import CarDetails from './pages/CarDetails';
+import MyReservation from './pages/MyReservation';
+import HomePage from './pages/HomePage';
 import ReserveCar from './pages/ReserveCar';
 
 function App() {
@@ -15,12 +18,20 @@ function App() {
       <Route path="/" element={<Layout />}>
         {loggedIn && (
           <>
-            <Route index element={<AddCar />} />
+            <Route index element={<HomePage />} />
             <Route path="/add-car" element={<AddCar />} />
             <Route path="/delete-car" element={<DeleteCar />} />
             <Route path="/reserve-car" element={<ReserveCar />} />
             <Route path="/reserve-car/:id" element={<ReserveCar />} />
-            <Route path="*" element={<AddCar />} />
+            <Route
+              path="/my-reservations"
+              element={<MyReservation />}
+            />
+            <Route
+              path="/car-details/:carId"
+              element={<CarDetails />}
+            />
+            <Route path="*" element={<HomePage />} />
           </>
         )}
         {!loggedIn && (

@@ -54,9 +54,9 @@ export default function NavigationPanel() {
             {loggedIn && (
               <>
                 <li>
-                  <button type="button" className={navLinkClass}>
+                  <NavLink to="/" className={navLinkClass}>
                     <span className="ms-3">Cars</span>
-                  </button>
+                  </NavLink>
                 </li>
                 <li>
                   <NavLink to="/reserve-car" className={navLinkClass}>
@@ -64,9 +64,9 @@ export default function NavigationPanel() {
                   </NavLink>
                 </li>
                 <li>
-                  <button type="button" className={navLinkClass}>
+                  <NavLink to="/my-reservations" className={navLinkClass}>
                     <span className="ms-3">My Reservations</span>
-                  </button>
+                  </NavLink>
                 </li>
                 <li>
                   <NavLink to="/add-car" className={navLinkClass}>

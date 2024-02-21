@@ -14,7 +14,6 @@ const ReserveCar = () => {
     dispatch(createReservation(formData))
       .then(() => {
         e.target.reset();
-        // window.location.reload();
         // navigate('/reservations');
       });
   };
