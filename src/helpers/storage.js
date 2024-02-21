@@ -1,6 +1,10 @@
-const saveLogin = (data) => {
-  localStorage.setItem('user', JSON.stringify(data.user));
-  localStorage.setItem('token', JSON.stringify(data.token));
+const saveLogin = (res) => {
+  const { user, token } = {
+    user: res.data.data.user,
+    token: res.headers.authorization,
+  };
+  localStorage.setItem('user', JSON.stringify(user));
+  localStorage.setItem('token', JSON.stringify(token));
 };
 
 const getUser = () => JSON.parse(localStorage.getItem('user'));
