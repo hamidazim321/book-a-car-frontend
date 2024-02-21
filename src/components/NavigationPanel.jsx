@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getUser } from '../helpers/storage';
 import { logoutUser } from '../redux/auth/authThunk';
 
 export default function NavigationPanel() {
-  const navLinkClass = 'w-full flex items-center p-2 text-gray-900 group hover:bg-lime-500 focus:bg-lime-500 hover:text-white focus:text-white';
+  const navLinkClass = 'w-full flex items-center p-2 text-gray-900 group hover:bg-lime-600  hover:text-white';
   const [openSidebar, setOpenSidebar] = useState(false);
   const loggedIn = getUser() !== null;
   const dispatch = useDispatch();
@@ -59,9 +59,9 @@ export default function NavigationPanel() {
                   </button>
                 </li>
                 <li>
-                  <Link to="/reserve-car" className={navLinkClass}>
+                  <NavLink to="/reserve-car" className={navLinkClass}>
                     <span className="ms-3">Reserve Car</span>
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
                   <button type="button" className={navLinkClass}>
@@ -69,14 +69,14 @@ export default function NavigationPanel() {
                   </button>
                 </li>
                 <li>
-                  <Link to="/add-car" className={navLinkClass}>
+                  <NavLink to="/add-car" className={navLinkClass}>
                     <span className="ms-3">Add Car</span>
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/delete-car" className={navLinkClass}>
+                  <NavLink to="/delete-car" className={navLinkClass}>
                     <span className="ms-3">Delete Car</span>
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
                   <button type="button" onClick={handleLogout} className={navLinkClass}>
