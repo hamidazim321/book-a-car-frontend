@@ -8,6 +8,7 @@ import { getUser } from './helpers/storage';
 import CarDetails from './pages/CarDetails';
 import MyReservation from './pages/MyReservation';
 import HomePage from './pages/HomePage';
+import ReserveCar from './pages/ReserveCar';
 
 function App() {
   const loggedIn = getUser() !== null;
@@ -18,10 +19,10 @@ function App() {
         {loggedIn && (
           <>
             <Route index element={<HomePage />} />
-            <Route index element={<AddCar />} />
             <Route path="/add-car" element={<AddCar />} />
             <Route path="/delete-car" element={<DeleteCar />} />
-            <Route path="*" element={<AddCar />} />
+            <Route path="/reserve-car" element={<ReserveCar />} />
+            <Route path="/reserve-car/:id" element={<ReserveCar />} />
             <Route
               path="/my-reservations"
               element={<MyReservation />}
@@ -30,6 +31,7 @@ function App() {
               path="/car-details/:carId"
               element={<CarDetails />}
             />
+            <Route path="*" element={<HomePage />} />
           </>
         )}
         {!loggedIn && (
