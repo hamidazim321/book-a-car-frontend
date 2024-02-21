@@ -24,10 +24,10 @@ const carSlice = createSlice({
         loading: false,
         error: false,
       }))
-      .addCase(fetchCars.rejected, (state, { error }) => ({
+      .addCase(fetchCars.rejected, (state, { payload }) => ({
         ...state,
         loading: false,
-        error,
+        error: payload,
       }))
       .addCase(deleteCar.pending, (state) => ({
         ...state,
@@ -39,10 +39,10 @@ const carSlice = createSlice({
         error: false,
         cars: state.cars.filter((car) => car.id !== payload),
       }))
-      .addCase(deleteCar.rejected, (state, { error }) => ({
+      .addCase(deleteCar.rejected, (state, { payload }) => ({
         ...state,
         loading: false,
-        error,
+        error: payload,
       }))
       .addCase(addCar.pending, (state) => ({
         ...state,
@@ -53,9 +53,9 @@ const carSlice = createSlice({
         loading: false,
         cars: [...state.cars, payload],
       }))
-      .addCase(addCar.rejected, (state, { error }) => ({
+      .addCase(addCar.rejected, (state, { payload }) => ({
         ...state,
-        error,
+        error: payload,
         loading: false,
       }));
   },
