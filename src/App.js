@@ -19,8 +19,12 @@ function App() {
         {loggedIn && (
           <>
             <Route index element={<HomePage />} />
-            <Route path="/add-car" element={<AddCar />} />
-            <Route path="/delete-car" element={<DeleteCar />} />
+            {getUser().admin && (
+              <>
+                <Route path="/add-car" element={<AddCar />} />
+                <Route path="/delete-car" element={<DeleteCar />} />
+              </>
+            )}
             <Route path="/reserve-car" element={<ReserveCar />} />
             <Route path="/reserve-car/:id" element={<ReserveCar />} />
             <Route
