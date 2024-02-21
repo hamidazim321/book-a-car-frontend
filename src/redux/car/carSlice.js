@@ -39,6 +39,11 @@ const carSlice = createSlice({
         error: false,
         cars: state.cars.filter((car) => car.id !== payload),
       }))
+      .addCase(deleteCar.rejected, (state, { error }) => ({
+        ...state,
+        loading: false,
+        error,
+      }))
       .addCase(addCar.pending, (state) => ({
         ...state,
         loading: true,

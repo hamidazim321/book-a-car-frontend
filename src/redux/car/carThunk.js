@@ -1,28 +1,32 @@
-import { createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { getToken } from '../../helpers/storage';
 
-const BASE_URL = 'http://127.0.0.1:3001';
+const BASE_URL = 'http://127.0.0.1:3001/api/v1';
 const CARS_PATH = '/cars';
+const headers = {
+  authorization: getToken(),
+};
 export const fetchCars = createAsyncThunk(
   'car/fetchCars',
-  async () => {
+  async (_, { rejectWithValue }) => {
     try {
-      const resp = await axios.get(BASE_URL + CARS_PATH);
+      const resp = await axios.get(`${BASE_URL}${CARS_PATH}`, { headers });
       return resp.data;
     } catch (error) {
-      return isRejectedWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   },
 );
 
 export const deleteCar = createAsyncThunk(
   'car/deleteCar',
-  async (id) => {
+  async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`${BASE_URL}${CARS_PATH}/${id}`);
+      await axios.delete(`${BASE_URL}${CARS_PATH}/${id}`, { headers });
       return id;
     } catch (error) {
-      return isRejectedWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -34,6 +38,7 @@ export const addCar = createAsyncThunk(
       const response = await axios.post(`${BASE_URL}${CARS_PATH}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          authorization: getToken(),
         },
       });
       return response.data;

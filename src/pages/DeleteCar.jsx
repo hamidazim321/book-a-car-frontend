@@ -15,7 +15,7 @@ export default function DeleteCar() {
       {
         error
         && (
-          <div role="alert">{error}</div>
+          <div role="alert">{error.message}</div>
         )
       }
       {

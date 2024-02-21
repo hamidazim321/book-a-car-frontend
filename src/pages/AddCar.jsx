@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addCar } from '../redux/car/carThunk';
+import ErrorAlert from '../components/ErrorAlert';
 
 export default function AddCar() {
+  const { error } = useSelector((state) => state.cars);
   const dispatch = useDispatch();
   const fileInput = useRef();
   const handleSubmit = (e) => {
@@ -25,6 +27,7 @@ export default function AddCar() {
       <div className="mb-3">
         <h1 className="text-center font-mono mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900">Add a car</h1>
       </div>
+      {error && <ErrorAlert message={error.message} />}
       <form
         className="flex flex-col w-full gap-3 md:w-3/4 mx-auto"
         onSubmit={handleSubmit}
