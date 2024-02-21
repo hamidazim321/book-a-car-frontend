@@ -22,8 +22,11 @@ export default function AddCar() {
     } else {
       formData.delete('car[image]');
     }
-    dispatch(addCar(formData))
-      .then(navigate('/'));
+    dispatch(addCar(formData)).then((result) => {
+      if (result.meta.requestStatus === 'fulfilled') {
+        navigate('/');
+      }
+    });
   };
   return (
     <div className="h-screen flex flex-col justify-center md:p-0">
@@ -33,7 +36,7 @@ export default function AddCar() {
       {error
         && (
           <div className="mb-3 w-auto mx-auto">
-            <ErrorAlert message={error.message === 'Rejected' ? 'You Are not Authorized For This Action' : error.message} />
+            <ErrorAlert message={error} />
           </div>
         )}
       <form

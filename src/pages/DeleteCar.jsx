@@ -15,7 +15,7 @@ export default function DeleteCar() {
       {
         error
         && (
-          <ErrorAlert message={error.message === 'Rejected' ? 'You Are not Authorized For This Action' : error.message} />
+          <ErrorAlert message={error} />
         )
       }
       {
