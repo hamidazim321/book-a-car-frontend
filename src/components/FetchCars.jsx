@@ -1,6 +1,9 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable comma-spacing */
 /* eslint-disable quotes */
+
+import { useMediaQuery } from 'react-responsive';
+
 import { Link } from "react-router-dom";
 import {
   FaChevronLeft,
@@ -13,9 +16,35 @@ import axios from "axios";
 import splitSentence from "../helpers/SplitSentence";
 
 const FetchCars = () => {
+  const [groupSize, setGroupSize] = useState(3);
+
+  const handleMediaQueryChangeSmall = (matches) => {
+    if (matches) {
+      setGroupSize(1);
+    }
+  };
+
+  const handleMediaQueryChangeLarge = (matches) => {
+    if (matches) {
+      setGroupSize(3);
+    }
+  };
+
+  useMediaQuery(
+    { query: '(max-width: 767px)' },
+    undefined,
+    handleMediaQueryChangeSmall
+  );
+
+  useMediaQuery(
+    { query: '(min-width: 768px)' },
+    undefined,
+    handleMediaQueryChangeLarge
+  );
+
   const [cars, setCars] = useState([]);
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
-  const groupSize = 3;
+  // const groupSize = 3;
   const totalGroups = Math.ceil(cars.length / groupSize);
 
   const handleNextGroup = () => {
