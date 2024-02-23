@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import splitSentence from "../helpers/SplitSentence";
+// import splitSentence from "../helpers/SplitSentence";
 
 const FetchCars = () => {
   const [groupSize, setGroupSize] = useState(3);
@@ -64,7 +64,7 @@ const FetchCars = () => {
 
   useEffect(() => {
     const fetchCarsData = async () => {
-      const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+      const res = await axios.get("http://127.0.0.1:3001/api/v1/cars");
       setCars(res.data);
     };
     fetchCarsData();
@@ -77,18 +77,28 @@ const FetchCars = () => {
       <h2 className="text-lg text-center">Please select a car model.</h2>
       <div className="flex flex-col gap-8 sm:flex-row mt-8">
         {displayByThree.length > 0 ? (
+          // Inside JSX
           displayByThree.map((car) => (
             <Link to={`/car-details/${car.id}`} key={car.id} className="card">
               <div className="avatar">
-                <div className="rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                <div className="rounded-full bg-gray-200 ring-offset-base-100 ring-offset-2 w-56">
                   <img
-                    src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                    style={{
+                      maxWidth: '100%',
+                      maxHeight: '100%',
+                      border: 'none',
+                      objectFit: 'contain'
+                    }} // Ensure image fits within the container
+                    src={car.image}
                     alt="avatar"
                   />
+
                 </div>
               </div>
               <div className="card-body">
-                <p>{splitSentence(car.title, 4)}</p>
+                <p>{car.name?.split(' ', 4).join(' ')}</p>
+                {' '}
+                {/* Use optional chaining */}
                 <div className="flex items-center justify-between">
                   <div className="badge badge-outline">
                     <FaFacebookF />
@@ -100,6 +110,7 @@ const FetchCars = () => {
               </div>
             </Link>
           ))
+
         ) : (
           <p> no Data found</p>
         )}
