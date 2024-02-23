@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getUser, removeLogin } from '../helpers/storage';
+import { NavLink, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getUser } from '../helpers/storage';
+import { logoutUser } from '../redux/auth/authThunk';
 
 export default function NavigationPanel() {
-  const navLinkClass = 'w-full flex items-center p-2 text-gray-900 group hover:bg-lime-500 focus:bg-lime-500 hover:text-white focus:text-white';
+  const navLinkClass = 'w-full flex items-center p-2 text-gray-900 group hover:bg-lime-600  hover:text-white';
+  const disabledLinkClass = 'ms-3 w-full flex items-center p-2 text-gray-500 cursor-not-allowed';
   const [openSidebar, setOpenSidebar] = useState(false);
   const loggedIn = getUser() !== null;
+  const currentUser = getUser();
+  const dispatch = useDispatch();
 
   const handleSidebar = (e) => {
     e.stopPropagation();
@@ -13,8 +18,10 @@ export default function NavigationPanel() {
   };
 
   const handleLogout = () => {
-    removeLogin();
-    window.location.href = '/';
+    dispatch(logoutUser())
+      .then(() => {
+        window.location.reload();
+      });
   };
   useEffect(() => {
     const closeSidebar = () => {
@@ -49,30 +56,46 @@ export default function NavigationPanel() {
             {loggedIn && (
               <>
                 <li>
-                  <Link to="/" className={navLinkClass}>
+                  <NavLink to="/" className={navLinkClass}>
                     <span className="ms-3">Cars</span>
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <button type="button" className={navLinkClass}>
+                  <NavLink to="/reserve-car" className={navLinkClass}>
                     <span className="ms-3">Reserve Car</span>
-                  </button>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/my-reservations" className={navLinkClass}>
+                  <NavLink to="/my-reservations" className={navLinkClass}>
                     <span className="ms-3">My Reservations</span>
-                  </Link>
+                  </NavLink>
                 </li>
-                <li>
-                  <Link to="/add-car" className={navLinkClass}>
-                    <span className="ms-3">Add Car</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/delete-car" className={navLinkClass}>
-                    <span className="ms-3">Delete Car</span>
-                  </Link>
-                </li>
+                {
+                  currentUser.admin ? (
+                    <>
+                      <li>
+                        <NavLink to="/add-car" className={navLinkClass}>
+                          <span className="ms-3">Add Car</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink to="/delete-car" className={navLinkClass}>
+                          <span className="ms-3">Delete Car</span>
+                        </NavLink>
+                      </li>
+                    </>
+
+                  ) : (
+                    <>
+                      <li>
+                        <span className={disabledLinkClass}>Add Car</span>
+                      </li>
+                      <span className={disabledLinkClass}>Add Car</span>
+                      <li />
+                    </>
+
+                  )
+                }
                 <li>
                   <button type="button" onClick={handleLogout} className={navLinkClass}>
                     <span className="ms-3">Logout</span>

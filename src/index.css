@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active {
+  background-color: #84cc16;
+  color: #fff;
+}
+
+.reserve-main .background-image {
+  background: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70') no-repeat center center/cover fixed;
+}
