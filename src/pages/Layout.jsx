@@ -7,7 +7,7 @@ import NavigationPanel from '../components/NavigationPanel';
 import { clearToast } from '../redux/toast/toastSlice';
 
 export default function Layout() {
-  const { error, success } = useSelector((state) => state.toast);
+  const { error, success, info } = useSelector((state) => state.toast);
   const dispatch = useDispatch();
   useEffect(() => {
     if (error) {
@@ -22,10 +22,19 @@ export default function Layout() {
     if (success) {
       toast.success(`Success! ${success}`, {
         position: 'top-center',
-      }, [success]);
+      });
       dispatch(clearToast());
     }
   }, [dispatch, success]);
+
+  useEffect(() => {
+    if (info) {
+      toast.info(`Info! ${info}`, {
+        position: 'top-center',
+      });
+      dispatch(clearToast());
+    }
+  }, [dispatch, info]);
   return (
     <main className="flex">
       <ToastContainer />

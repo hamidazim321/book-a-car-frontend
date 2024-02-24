@@ -3,14 +3,19 @@ import { NavLink, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getUser } from '../helpers/storage';
 import { logoutUser } from '../redux/auth/authThunk';
+import { toastInfo } from '../redux/toast/toastSlice';
 
 export default function NavigationPanel() {
   const navLinkClass = 'w-full flex items-center p-2 text-gray-900 group hover:bg-lime-600  hover:text-white';
-  const disabledLinkClass = 'ms-3 w-full flex items-center p-2 text-gray-500 cursor-not-allowed';
+  const disabledLinkClass = 'ms-3 w-full flex items-center p-2 text-gray-500 cursor-not-allowed border-0';
   const [openSidebar, setOpenSidebar] = useState(false);
   const loggedIn = getUser() !== null;
   const currentUser = getUser();
   const dispatch = useDispatch();
+
+  const handleNonAdmins = () => {
+    dispatch(toastInfo('This action is only for admins'));
+  };
 
   const handleSidebar = (e) => {
     e.stopPropagation();
@@ -88,9 +93,9 @@ export default function NavigationPanel() {
                   ) : (
                     <>
                       <li>
-                        <span className={disabledLinkClass}>Add Car</span>
+                        <button type="button" onClick={handleNonAdmins} className={disabledLinkClass}>Add Car</button>
                       </li>
-                      <span className={disabledLinkClass}>Add Car</span>
+                      <button type="button" onClick={handleNonAdmins} className={disabledLinkClass}>Add Car</button>
                       <li />
                     </>
 
