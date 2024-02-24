@@ -1,8 +1,8 @@
-import { useParams } from 'react-router-dom'; // Updated import statement
+import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const CarDetailPage = () => { // Renamed component to CarDetailPage
+const CarDetailPage = () => {
   const [car, setCar] = useState({});
   const { carId } = useParams();
 
@@ -10,7 +10,7 @@ const CarDetailPage = () => { // Renamed component to CarDetailPage
     const getSingleCar = async () => {
       try {
         const res = await axios.get(
-          `http://127.0.0.1:3001/api/v1/cars/${carId}`, // Updated API endpoint for fetching a single car
+          `http://127.0.0.1:3001/api/v1/cars/${carId}`,
         );
         setCar(res.data);
       } catch (error) {
@@ -18,39 +18,55 @@ const CarDetailPage = () => { // Renamed component to CarDetailPage
       }
     };
     getSingleCar();
-  }, [carId]); // Added carId as a dependency to useEffect
+  }, [carId]);
 
   return (
-    <div className="flex w-full">
+    <div className="flex justify-center items-center h-screen">
       <div className="w-2/3">
-        <div className="avatar">
-          <div className="rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+        <div className="avatar flex justify-center">
+          <div className="rounded-full bg-gray-200 ring-offset-base-100 ring-offset-2 w-96">
             <img
-              src={car.image} // Assuming car.image contains the image URL
+              style={{
+                maxWidth: '100%',
+                maxHeight: '100%',
+                border: 'none',
+                objectFit: 'contain',
+              }}
+              src={car.image}
               alt="Car"
             />
           </div>
         </div>
       </div>
-      <div className="w-1/3">
-        <div className=" overflow-x-auto">
+      <div className="w-1/3 ml-8">
+        <div className="overflow-x-auto">
           <table className="table table-zebra">
             <tbody>
               <tr>
-                <td>{car.title}</td>
+                <td className="text-2xl font-bold">{car.name}</td>
               </tr>
               <tr>
-                <td>{car.body}</td>
+                <td className="text-lg">{car.description}</td>
               </tr>
               <tr>
-                <td>{car.userId}</td>
+                <td className="text-lg mt-4">
+                  Price:
+                  {car.price}
+                </td>
               </tr>
             </tbody>
           </table>
+          <Link
+            to="/reserve-car"
+            className="mt-4 bg-lime-600 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded text-center flex items-center justify-center"
+            style={{ paddingBottom: '10px' }}
+          >
+            Reserve Car
+          </Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default CarDetailPage; // Exporting the CarDetailPage component
+export default CarDetailPage;
