@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { addCar } from '../redux/car/carThunk';
@@ -7,18 +7,13 @@ import ErrorAlert from '../components/ErrorAlert';
 export default function AddCar() {
   const { error } = useSelector((state) => state.car);
   const dispatch = useDispatch();
-  const fileInput = useRef();
+  const [image, setImage] = useState(null);
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const reader = new FileReader();
-    const file = fileInput.current.files[0];
-    if (file) {
-      reader.onloadend = () => {
-        formData.set('car[image]', reader.result);
-      };
-      reader.readAsDataURL(file);
+    if (image) {
+      formData.set('car[image]', image);
     } else {
       formData.delete('car[image]');
     }
@@ -58,7 +53,25 @@ export default function AddCar() {
         <div>
           {/* eslint-disable jsx-a11y/label-has-associated-control */}
           <label className="block mb-2 text-sm font-medium text-gray-900" htmlFor="file-input">Car Image</label>
-          <input required ref={fileInput} type="file" name="car[image]" accept="image/*" id="file-input" className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg p-1 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none" />
+          <input
+            required
+            type="file"
+            name="car[image]"
+            accept="image/*"
+            id="file-input"
+            className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg p-1 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none"
+            onChange={(e) => {
+              const file = e.target.files[0];
+              const reader = new FileReader();
+
+              reader.onload = (event) => {
+                const imageDataUrl = event.target.result;
+                setImage(imageDataUrl);
+              };
+
+              reader.readAsDataURL(file);
+            }}
+          />
           {/* eslint-enable jsx-a11y/label-has-associated-control */}
         </div>
         <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Add Car</button>

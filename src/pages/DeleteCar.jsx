@@ -9,7 +9,7 @@ export default function DeleteCar() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCars());
-  }, []);
+  }, [dispatch]);
   return (
     <section className="p-4 mt-6">
       {
