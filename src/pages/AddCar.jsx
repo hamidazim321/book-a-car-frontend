@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { addCar } from '../redux/car/carThunk';
-import ErrorAlert from '../components/ErrorAlert';
+import { toastError, toastSuccess } from '../redux/toast/toastSlice';
 
 export default function AddCar() {
   const { error } = useSelector((state) => state.car);
@@ -20,20 +20,22 @@ export default function AddCar() {
     dispatch(addCar(formData)).then((result) => {
       if (result.meta.requestStatus === 'fulfilled') {
         navigate('/');
+        dispatch(toastSuccess('added car successfully'));
       }
     });
   };
+
+  useEffect(() => {
+    if (error) {
+      dispatch(toastError(error));
+    }
+  }, [error, dispatch]);
+
   return (
     <div className="h-screen flex flex-col justify-center md:p-0">
       <div className="mb-3">
         <h1 className="text-center font-mono mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900">Add a car</h1>
       </div>
-      {error
-        && (
-          <div className="mb-3 w-auto mx-auto">
-            <ErrorAlert message={error} />
-          </div>
-        )}
       <form
         className="flex flex-col w-full gap-3 md:w-3/4 mx-auto"
         onSubmit={handleSubmit}

@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   error: null,
-  success: null
-}
+  success: null,
+};
 
 const toastSlice = createSlice({
   name: 'toast',
@@ -12,23 +12,24 @@ const toastSlice = createSlice({
     toastError(state, { payload }) {
       return {
         ...state,
-        error: payload
-      }
+        error: payload,
+      };
     },
     toastSuccess(state, { payload }) {
       return {
         ...state,
-        success: payload
-      }
+        success: payload,
+      };
     },
     clearToast(state) {
       return {
+        ...state,
         error: null,
-        success: null
-      }
-    }
-  }
-})
+        success: null,
+      };
+    },
+  },
+});
 
-export default toastSlice
-export const { toastError, toastSuccess, clearToast } = toastSlice.actions
+export default toastSlice.reducer;
+export const { toastError, toastSuccess, clearToast } = toastSlice.actions;
