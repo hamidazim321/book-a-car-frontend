@@ -95,7 +95,7 @@ export default function NavigationPanel() {
                       <li>
                         <button type="button" onClick={handleNonAdmins} className={disabledLinkClass}>Add Car</button>
                       </li>
-                      <button type="button" onClick={handleNonAdmins} className={disabledLinkClass}>Add Car</button>
+                      <button type="button" onClick={handleNonAdmins} className={disabledLinkClass}>Delete Car</button>
                       <li />
                     </>
 
