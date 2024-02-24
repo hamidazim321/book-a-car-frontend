@@ -44,7 +44,7 @@ const FetchCars = () => {
   );
 
   // const [cars, setCars] = useState([]);
-  const { cars, error } = useSelector((state) => state.car);
+  const { cars } = useSelector((state) => state.car);
   const dispatch = useDispatch();
 
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
@@ -113,11 +113,7 @@ const FetchCars = () => {
         ) : (
           <p> no Data found</p>
         )}
-        {error && (
-          <div className="text-red-500">
-            {error}
-          </div>
-        )}
+
         <>
           <button
             type="button"
