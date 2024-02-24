@@ -18,14 +18,7 @@ export default function DeleteCar() {
   }, [error, dispatch]);
   return (
     <section className="p-4 mt-6">
-      {
-        loading
-        && (
-          <div className="absolute top-1/2 left-1/2">
-            <LoadingSpinner />
-          </div>
-        )
-      }
+      {loading && <LoadingSpinner />}
       <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
         {
           cars

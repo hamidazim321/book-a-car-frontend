@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { addCar } from '../redux/car/carThunk';
 import { toastError, toastSuccess } from '../redux/toast/toastSlice';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 export default function AddCar() {
-  const { error } = useSelector((state) => state.car);
+  const { error, loading } = useSelector((state) => state.car);
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ export default function AddCar() {
 
   return (
     <div className="h-screen flex flex-col justify-center md:p-0">
+      {loading && <LoadingSpinner />}
       <div className="mb-3">
         <h1 className="text-center font-mono mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900">Add a car</h1>
       </div>
@@ -75,7 +77,7 @@ export default function AddCar() {
           />
           {/* eslint-enable jsx-a11y/label-has-associated-control */}
         </div>
-        <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Add Car</button>
+        <button type="submit" disabled={loading} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Add Car</button>
       </form>
     </div>
   );
