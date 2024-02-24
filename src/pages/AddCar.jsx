@@ -58,6 +58,7 @@ export default function AddCar() {
           {/* eslint-disable jsx-a11y/label-has-associated-control */}
           <label className="block mb-2 text-sm font-medium text-gray-900" htmlFor="file-input">Car Image</label>
           <input
+            required
             type="file"
             name="car[image]"
             accept="image/*"
