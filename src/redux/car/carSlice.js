@@ -32,6 +32,7 @@ const carSlice = createSlice({
       .addCase(deleteCar.pending, (state) => ({
         ...state,
         loading: true,
+        error: false,
       }))
       .addCase(deleteCar.fulfilled, (state, { payload }) => ({
         ...state,
@@ -47,6 +48,7 @@ const carSlice = createSlice({
       .addCase(addCar.pending, (state) => ({
         ...state,
         loading: true,
+        error: false,
       }))
       .addCase(addCar.fulfilled, (state, { payload }) => ({
         ...state,
