@@ -1,70 +1,160 @@
-# Getting Started with Create React App
+# 📗 Table of Contents
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- [📖 About the Project](#about-project)
+  - [🛠 Built With](#built-with)
+    - [Tech Stack](#tech-stack)
+    - [Key Features](#key-features)
+    - [Back End](#back-end)
+    - [Kanban Board](#kanban-board)
+- [💻 Getting Started](#getting-started)
+  - [Setup](#setup)
+  - [Prerequisites](#prerequisites)
+  - [Install](#install)
+- [👥 Authors](#authors)
+- [🔭 Future Features](#future-features)
+- [🤝 Contributing](#contributing)
+- [⭐️ Show your support](#support)
+- [🙏 Acknowledgements](#acknowledgements)
+- [❓ FAQ](#faq)
+- [📝 License](#license)
 
-## Available Scripts
 
-In the project directory, you can run:
+# 📖 Book A Car Front End <a name="about-project"></a>
 
-### `npm start`
+**Book A Car Front End** is the front end of the full-stack application for the Microverse Full Stack Program Final Capstone Project. The front-end part of the application is made with React and Redux with client-side routing and user authentication and authorization. It is an elegant example of a Car booking application where users can see and reserve cars, and add cars on the app for other users to reserve.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠 Built With <a name="built-with"></a>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Tech Stack <a name="tech-stack"></a>
 
-### `npm test`
+<details>
+<summary>Languages</summary>
+  <ul>
+    <li><a href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a></li>
+  </ul>
+</details>
+<details>
+<summary>Frameworks</summary>
+  <ul>
+    <li><a href="https://react.dev/">React</a></li>
+  </ul>
+</details>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### Key Features <a name="key-features"></a>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **User Authentication**
+- **User Authorization**
+- **users can reserve cars**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Back end <a name="back-end"></a>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- To see the back end of this project click [here](https://github.com/hamidazim321/book-a-car-backend)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Kanban Board <a name="kanban-board"></a>
+- To see Kanban Board at the start of the project click [here](https://drive.google.com/file/d/1lQxbcpK5mH3S6N_G8HEMWJUgVZiQMX0-/view?usp=sharing):
+- To see the Kanban Board of this project click [here](https://github.com/users/hamidazim321/projects/4)
 
-## Learn More
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## 💻 Getting Started <a name="getting-started"></a>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+To get a local copy up and running, follow these steps.
 
-### Analyzing the Bundle Size
+### Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+In order to run this project you need:
 
-### Making a Progressive Web App
+you must have a code editor such as VSCode
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Setup
 
-### Advanced Configuration
+Install Ruby, Ruby on Rails and Node on your local machine 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Install
 
-### Deployment
+Install this project with:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```git clone git@github.com:hamidazim321/hello-rails-frontend.git```
 
-### `npm run build` fails to minify
+### Run
+Run `npm start``` to start the front end of the project
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## 👤 Authors <a name="authors"></a>
+
+🧔 **Hamid**
+
+- GitHub: [@hamidazim321](https://github.com/hamidazim321)
+- Twitter: [@hamidazim321](https://twitter.com/hamidazim321)
+- LinkedIn: [hamid-azim](https://www.linkedin.com/in/hamid-azim)
+
+🧔 **Ghayoor Baqir**
+
+- GitHub: [github](https://github.com/Xghayor)
+- LinkedIn: [linkedin](https://www.linkedin.com/in/ghayoorulbaqir/)
+
+🧔 **Mohammed Sabry**
+
+- GitHub: [github](https://github.com/mohamedSabry0)
+- Twitter: [twitter](https://twitter.com/mohsmh0)
+
+🧔 **Mustakim Masum**
+
+- GitHub: [github](https://github.com/firepicaso)
+- Linkedin: [Linkedin](https://www.linkedin.com/in/mustakim-masum/)
+
+🧔 **Md Sazzad Hossain**
+
+- GitHub: [github](https://github.com/SAZZAD1Q2)
+- Linkedin: [Linkedin](https://www.linkedin.com/in/sazzad3y/)
+- Twitter: [Twitter](https://twitter.com/SazzadShaikh11)
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- [ ] **will add seller profiles for users to run their business on the platform**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## 🤝 Contributing <a name="contributing"></a>
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](../../issues/).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## ⭐️ Show your support <a name="support"></a>
+
+If you like this project follow me on the social accounts above to be notified of future projects
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## 🙏 Acknowledgments <a name="acknowledgements"></a>
+
+I would like to thank Microverse for the opportunity
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## 📝 License <a name="license"></a>
+
+This project is [MIT](./LICENSE) licensed.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
