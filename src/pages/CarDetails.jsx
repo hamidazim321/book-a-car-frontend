@@ -1,23 +1,32 @@
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { getToken, removeLogin } from '../helpers/storage';
 
 const CarDetailPage = () => {
+  const BASE_URL = 'http://127.0.0.1:3001/api/v1';
+  const CARS_PATH = '/cars';
+  const headers = {
+    authorization: getToken(),
+  };
+
   const [car, setCar] = useState({});
   const { carId } = useParams();
 
   useEffect(() => {
-    const getSingleCar = async () => {
+    const getSingleCar = async (id) => {
       try {
-        const res = await axios.get(
-          `http://127.0.0.1:3001/api/v1/cars/${carId}`,
-        );
+        const res = await axios.get(`${BASE_URL}${CARS_PATH}/${id}`, {
+          headers,
+        });
         setCar(res.data);
       } catch (error) {
-        console.error('Error fetching car:', error);
+        if (error.response.status === 401) {
+          removeLogin();
+        }
       }
     };
-    getSingleCar();
+    getSingleCar(carId);
   }, [carId]);
 
   return (
@@ -57,7 +66,7 @@ const CarDetailPage = () => {
             </tbody>
           </table>
           <Link
-            to="/reserve-car"
+            to={`/reserve-car/${carId}`}
             className="mt-4 bg-lime-600 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded text-center flex items-center justify-center"
             style={{ paddingBottom: '10px' }}
           >
