@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReservations } from '../redux/reservations/reservationsThunk';
 import LoadingSpinner from '../components/LoadingSpinner';
+
 const MyReservation = () => {
   const dispatch = useDispatch();
   const { reservations, loading } = useSelector((state) => state.reservations);
