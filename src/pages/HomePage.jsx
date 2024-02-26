@@ -1,17 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import FetchCars from '../components/FetchCars';
-import { toastError } from '../redux/toast/toastSlice';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const HomePage = () => {
-  const { error, loading } = useSelector((state) => state.car);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (error) {
-      dispatch(toastError(error));
-    }
-  }, [dispatch, error]);
+  const { loading } = useSelector((state) => state.car);
   return (
     <div>
       {loading && <LoadingSpinner />}

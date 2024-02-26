@@ -2,20 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCar, fetchCars } from '../redux/car/carThunk';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { toastError } from '../redux/toast/toastSlice';
 
 export default function DeleteCar() {
-  const { cars, error, loading } = useSelector((state) => state.car);
+  const { cars, loading } = useSelector((state) => state.car);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCars());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (error) {
-      dispatch(toastError(error));
-    }
-  }, [error, dispatch]);
   return (
     <section className="p-4 mt-6">
       {loading && <LoadingSpinner />}
