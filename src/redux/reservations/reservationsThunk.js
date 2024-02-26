@@ -43,8 +43,8 @@ export const deleteReservation = createAsyncThunk('reservations/deleteReservatio
     authorization: getToken(),
   };
   try {
-    const response = await axios.delete(`${ReservationsURL}/${reservationId}`, { headers });
-    return response.data;
+    await axios.delete(`${ReservationsURL}/${reservationId}`, { headers });
+    return { id: reservationId };
   } catch (error) {
     if (error.response.status === 401) {
       removeLogin();

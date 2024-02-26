@@ -31,7 +31,6 @@ const reservationsSlice = createSlice({
         ...state,
         loading: false,
         reservations: action.payload,
-        success: 'Reservations fetched successfully',
       }))
       .addCase(getReservations.rejected, (state, action) => ({
         ...state,
