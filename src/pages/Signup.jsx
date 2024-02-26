@@ -1,11 +1,14 @@
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router';
 import { signupUser } from '../redux/auth/authThunk';
 import getFormData from '../helpers/getFormData';
 
 export default function Signup() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -20,7 +23,7 @@ export default function Signup() {
     dispatch(signupUser(formData))
       .then(() => {
         e.target.reset();
-        window.location.reload();
+        navigate('/');
       });
   };
   return (
