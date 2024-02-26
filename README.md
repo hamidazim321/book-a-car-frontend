@@ -82,8 +82,9 @@ Install Ruby, Ruby on Rails and Node on your local machine
 ### Install
 
 Install this project with:
-
 ```git clone git@github.com:hamidazim321/hello-rails-frontend.git```
+Install all project dependencies with:
+```npm install```
 
 ### Run
 Run `npm start``` to start the front end of the project
