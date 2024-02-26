@@ -1,4 +1,5 @@
-import { Route, Routes } from 'react-router';
+import { Route, Routes, useNavigate } from 'react-router';
+import { useEffect } from 'react';
 import AddCar from './pages/AddCar';
 import Layout from './pages/Layout';
 import DeleteCar from './pages/DeleteCar';
@@ -12,6 +13,13 @@ import ReserveCar from './pages/ReserveCar';
 
 function App() {
   const loggedIn = getUser() !== null;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate('/');
+    }
+  }, [loggedIn]);
 
   return (
     <Routes>

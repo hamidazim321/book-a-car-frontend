@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { FaChevronLeft } from 'react-icons/fa';
 import { getToken, removeLogin } from '../helpers/storage';
 
 const CarDetailPage = () => {
   const BASE_URL = 'http://127.0.0.1:3001/api/v1';
   const CARS_PATH = '/cars';
+  const navigate = useNavigate();
   const headers = {
     authorization: getToken(),
   };
@@ -30,10 +32,10 @@ const CarDetailPage = () => {
   }, [carId]);
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-2/3">
+    <div className="flex flex-col md:flex-row justify-center items-center min-h-screen">
+      <div className="w-full md:w-2/3 flex md:flex-row flex-col">
         <div className="avatar flex justify-center">
-          <div className="rounded-full bg-gray-200 ring-offset-base-100 ring-offset-2 w-96">
+          <div className="ring-offset-base-100 ring-offset-2 w-full">
             <img
               style={{
                 maxWidth: '100%',
@@ -46,8 +48,21 @@ const CarDetailPage = () => {
             />
           </div>
         </div>
+        <div className="-order-1 md:mt-auto mt-12">
+          <button
+            type="button"
+            onClick={() => navigate('/')}
+            className="flex items-center justify-center cursor-pointer"
+          >
+            <span className="inline-flex rounded-r-full text-white bg-lime-500 items-center justify-center w-10 h-10 hover:bg-lime-500">
+              <FaChevronLeft />
+              {' '}
+              <span className="sr-only">Navigate to Cars Page</span>
+            </span>
+          </button>
+        </div>
       </div>
-      <div className="w-1/3 ml-8">
+      <div className="w-full md:w-1/3 ml-8">
         <div className="overflow-x-auto">
           <table className="table table-zebra">
             <tbody>
@@ -58,8 +73,11 @@ const CarDetailPage = () => {
                 <td className="text-lg">{car.description}</td>
               </tr>
               <tr>
+                <td className="text-lg">{car.manufacturer}</td>
+              </tr>
+              <tr>
                 <td className="text-lg mt-4">
-                  Price:
+                  Price: $
                   {car.price}
                 </td>
               </tr>

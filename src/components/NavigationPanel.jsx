@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import {
+  FaFacebookF, FaLinkedinIn, FaTwitch, FaTwitter,
+} from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { getUser } from '../helpers/storage';
 import { logoutUser } from '../redux/auth/authThunk';
-import { toastInfo } from '../redux/toast/toastSlice';
 
 export default function NavigationPanel() {
   const navLinkClass = 'w-full flex items-center p-2 text-gray-900 group hover:bg-lime-600  hover:text-white';
@@ -12,9 +16,12 @@ export default function NavigationPanel() {
   const loggedIn = getUser() !== null;
   const currentUser = getUser();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleNonAdmins = () => {
-    dispatch(toastInfo('This action is only for admins'));
+    toast.info('Only Admins can perform this action', {
+      position: 'top-center',
+    });
   };
 
   const handleSidebar = (e) => {
@@ -25,7 +32,7 @@ export default function NavigationPanel() {
   const handleLogout = () => {
     dispatch(logoutUser())
       .then(() => {
-        window.location.reload();
+        navigate('/');
       });
   };
   useEffect(() => {
@@ -49,14 +56,14 @@ export default function NavigationPanel() {
         </svg>
       </button>
 
-      <aside id="default-sidebar" className={`p-2 bg-gray-50 fixed md:static top-0 left-0 z-40 w-64 h-screen transition-transform md:translate-x-0 ${openSidebar ? '' : '-translate-x-full'}`} aria-label="Sidebar">
+      <aside id="default-sidebar" className={`p-2 flex flex-col bg-gray-50 fixed md:static top-0 left-0 z-40 w-64 h-screen transition-transform md:translate-x-0 ${openSidebar ? '' : '-translate-x-full'}`} aria-label="Sidebar">
         <div>
           <h1 className="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900">
             Book A
             <span className="text-blue-600"> Car</span>
           </h1>
         </div>
-        <div className="h-full px-3 py-4 overflow-y-auto pt-28">
+        <div className="px-3 py-4 overflow-y-auto pt-28">
           <ul className="space-y-2 font-medium">
             {loggedIn && (
               <>
@@ -122,6 +129,14 @@ export default function NavigationPanel() {
                 </li>
               </>
             )}
+          </ul>
+        </div>
+        <div className="mt-auto px-4">
+          <ul className="flex ms-2 justify-around items-center">
+            <li className="cursor-pointer"><FaFacebookF /></li>
+            <li className="cursor-pointer"><FaLinkedinIn /></li>
+            <li className="cursor-pointer"><FaTwitch /></li>
+            <li className="cursor-pointer"><FaTwitter /></li>
           </ul>
         </div>
       </aside>

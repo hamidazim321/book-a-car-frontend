@@ -1,4 +1,6 @@
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { signupUser } from '../redux/auth/authThunk';
 import getFormData from '../helpers/getFormData';
 
@@ -10,7 +12,9 @@ export default function Signup() {
     const formData = getFormData(e.target);
     const { password, passwordConfirmation } = formData;
     if (password !== passwordConfirmation) {
-      console.log('Passwords do not match');
+      toast.error('Passwords do not match', {
+        position: 'top-center',
+      });
       return;
     }
     dispatch(signupUser(formData))

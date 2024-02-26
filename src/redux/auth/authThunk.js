@@ -48,7 +48,7 @@ const logoutUser = createAsyncThunk('auth/logoutUser', async (_, { rejectWithVal
   const headers = {
     authorization: getToken(),
   };
-  console.log(headers);
+
   try {
     const response = await axios.delete(`${AuthURL}/logout`, { headers });
     removeLogin();

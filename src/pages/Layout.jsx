@@ -4,37 +4,82 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router';
 import NavigationPanel from '../components/NavigationPanel';
-import { clearToast } from '../redux/toast/toastSlice';
+import { clearCarMessages } from '../redux/car/carSlice';
+import { clearReservationsMessages } from '../redux/reservations/reservationsSlice';
+import { clearAuthMessages } from '../redux/auth/authSlice';
 
 export default function Layout() {
-  const { error, success, info } = useSelector((state) => state.toast);
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (error) {
-      toast.error(`Error! ${error}`, {
-        position: 'top-center',
-      });
-      dispatch(clearToast());
-    }
-  }, [dispatch, error]);
+  const carState = useSelector((state) => state.car);
+  const reservationState = useSelector((state) => state.reservations);
+  const authState = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (success) {
-      toast.success(`Success! ${success}`, {
-        position: 'top-center',
-      });
-      dispatch(clearToast());
+    if (carState.error || carState.success || carState.info) {
+      if (carState.error) {
+        toast.error(`Error! ${carState.error}`, {
+          position: 'top-center',
+        });
+      }
+      if (carState.success) {
+        toast.success(`Success! ${carState.success}`, {
+          position: 'top-center',
+        });
+      }
+      if (carState.info) {
+        toast.info(`Info! ${carState.info}`, {
+          position: 'top-center',
+        });
+      }
+      dispatch(clearCarMessages());
     }
-  }, [dispatch, success]);
+  },
+  [carState.error, carState.success, carState.info, dispatch]);
 
   useEffect(() => {
-    if (info) {
-      toast.info(`Info! ${info}`, {
-        position: 'top-center',
-      });
-      dispatch(clearToast());
+    if (reservationState.error || reservationState.success || reservationState.info) {
+      if (reservationState.error) {
+        toast.error(`Error! ${reservationState.error}`, {
+          position: 'top-center',
+        });
+      }
+      if (reservationState.success) {
+        toast.success(`Success! ${reservationState.success}`, {
+          position: 'top-center',
+        });
+      }
+      if (reservationState.info) {
+        toast.info(`Info! ${reservationState.info}`, {
+          position: 'top-center',
+        });
+      }
+      dispatch(clearReservationsMessages());
     }
-  }, [dispatch, info]);
+  },
+  [reservationState.error, reservationState.success, reservationState.info, dispatch]);
+
+  useEffect(() => {
+    if (authState.error || authState.success || authState.info) {
+      if (authState.error) {
+        toast.error(`Error! ${authState.error}`, {
+          position: 'top-center',
+        });
+      }
+      if (authState.success) {
+        toast.success(`Success! ${authState.success}`, {
+          position: 'top-center',
+        });
+      }
+      if (authState.info) {
+        toast.info(`Info! ${authState.info}`, {
+          position: 'top-center',
+        });
+      }
+      dispatch(clearAuthMessages());
+    }
+  },
+  [authState.error, authState.success, authState.info, dispatch]);
+
   return (
     <main className="flex">
       <ToastContainer />

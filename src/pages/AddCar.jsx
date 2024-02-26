@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { addCar } from '../redux/car/carThunk';
-import { toastError, toastSuccess } from '../redux/toast/toastSlice';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 export default function AddCar() {
-  const { error, loading } = useSelector((state) => state.car);
+  const { loading } = useSelector((state) => state.car);
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const navigate = useNavigate();
@@ -21,16 +20,9 @@ export default function AddCar() {
     dispatch(addCar(formData)).then((result) => {
       if (result.meta.requestStatus === 'fulfilled') {
         navigate('/');
-        dispatch(toastSuccess('added car successfully'));
       }
     });
   };
-
-  useEffect(() => {
-    if (error) {
-      dispatch(toastError(error));
-    }
-  }, [error, dispatch]);
 
   return (
     <div className="h-screen flex flex-col justify-center md:p-0">

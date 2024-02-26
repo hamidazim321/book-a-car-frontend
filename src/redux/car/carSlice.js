@@ -5,12 +5,21 @@ const initialState = {
   cars: [],
   loading: false,
   error: null,
+  success: null,
+  info: null,
 };
 
 const carSlice = createSlice({
   name: 'car',
   initialState,
-  reducers: {},
+  reducers: {
+    clearCarMessages: (state) => ({
+      ...state,
+      success: null,
+      error: null,
+      info: null,
+    }),
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCars.pending, (state) => ({
@@ -39,6 +48,7 @@ const carSlice = createSlice({
         loading: false,
         error: false,
         cars: state.cars.filter((car) => car.id !== payload),
+        success: 'Car deleted successfully',
       }))
       .addCase(deleteCar.rejected, (state, { payload }) => ({
         ...state,
@@ -54,6 +64,7 @@ const carSlice = createSlice({
         ...state,
         loading: false,
         cars: [...state.cars, payload],
+        success: 'Car added successfully',
       }))
       .addCase(addCar.rejected, (state, { payload }) => ({
         ...state,
@@ -63,4 +74,5 @@ const carSlice = createSlice({
   },
 });
 
+export const { clearCarMessages } = carSlice.actions;
 export default carSlice.reducer;
