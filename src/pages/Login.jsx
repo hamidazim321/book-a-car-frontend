@@ -1,9 +1,11 @@
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import getFormData from '../helpers/getFormData';
 import { loginUser } from '../redux/auth/authThunk';
 
 export default function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,7 +14,7 @@ export default function Login() {
     dispatch(loginUser(formData))
       .then(() => {
         e.target.reset();
-        window.location.reload();
+        navigate('/');
       });
   };
 
