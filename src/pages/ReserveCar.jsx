@@ -1,12 +1,20 @@
-import { useParams } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { getUser } from '../helpers/storage';
 import getFormData from '../helpers/getFormData';
 import { createReservation } from '../redux/reservations/reservationsThunk';
+import { fetchCars } from '../redux/car/carThunk';
 
 const ReserveCar = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { cars } = useSelector((state) => state.car);
+
+  useEffect(() => {
+    dispatch(fetchCars());
+  }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,7 +22,7 @@ const ReserveCar = () => {
     dispatch(createReservation(formData))
       .then(() => {
         e.target.reset();
-        // navigate('/reservations');
+        navigate('/my-reservations');
       });
   };
 
@@ -38,9 +46,20 @@ const ReserveCar = () => {
           <input type="hidden" value={getUser().id} name="user_id" />
         </div>
         {id && (<input type="hidden" value={id} name="car_id" />)}
-        {!id && (
+        {!id && cars.length === 0 && (
           <div>
             <input type="text" placeholder="Car ID" className="block w-full md:w-20 p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" name="car_id" />
+          </div>
+        )}
+        {!id && cars.length > 0 && (
+          <div>
+            <select name="car_id" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500">
+              <option value="">Select a car</option>
+              {console.log(cars)}
+              {cars.map((car) => (
+                <option key={car.id} value={car.id}>{car.name}</option>
+              ))}
+            </select>
           </div>
         )}
         <div>
