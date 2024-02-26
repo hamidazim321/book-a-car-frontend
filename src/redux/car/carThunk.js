@@ -4,14 +4,15 @@ import { getToken, removeLogin } from '../../helpers/storage';
 
 const BASE_URL = 'http://127.0.0.1:3001/api/v1';
 const CARS_PATH = '/cars';
-const headers = {
-  authorization: getToken(),
-};
+
+const getHeaders = () => (
+  { headers: { authorization: getToken() } }
+);
 export const fetchCars = createAsyncThunk(
   'car/fetchCars',
   async (_, { rejectWithValue }) => {
     try {
-      const resp = await axios.get(`${BASE_URL}${CARS_PATH}`, { headers });
+      const resp = await axios.get(`${BASE_URL}${CARS_PATH}`, getHeaders());
       return resp.data;
     } catch (error) {
       if (error.response.status === 401) {
@@ -30,7 +31,7 @@ export const deleteCar = createAsyncThunk(
   'car/deleteCar',
   async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`${BASE_URL}${CARS_PATH}/${id}`, { headers });
+      await axios.delete(`${BASE_URL}${CARS_PATH}/${id}`, getHeaders());
       return id;
     } catch (error) {
       if (error.response.status === 401) {
