@@ -4,9 +4,10 @@ import { useDispatch } from 'react-redux';
 import {
   FaFacebookF, FaLinkedinIn, FaTwitch, FaTwitter,
 } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { getUser } from '../helpers/storage';
 import { logoutUser } from '../redux/auth/authThunk';
-import { toastInfo } from '../redux/toast/toastSlice';
 
 export default function NavigationPanel() {
   const navLinkClass = 'w-full flex items-center p-2 text-gray-900 group hover:bg-lime-600  hover:text-white';
@@ -18,7 +19,9 @@ export default function NavigationPanel() {
   const navigate = useNavigate();
 
   const handleNonAdmins = () => {
-    dispatch(toastInfo('This action is only for admins'));
+    toast.info('Only Admins can perform this action', {
+      position: 'top-center',
+    });
   };
 
   const handleSidebar = (e) => {
