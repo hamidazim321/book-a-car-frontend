@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getUser } from '../helpers/storage';
 import { logoutUser } from '../redux/auth/authThunk';
@@ -12,6 +12,7 @@ export default function NavigationPanel() {
   const loggedIn = getUser() !== null;
   const currentUser = getUser();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleNonAdmins = () => {
     dispatch(toastInfo('This action is only for admins'));
@@ -25,7 +26,7 @@ export default function NavigationPanel() {
   const handleLogout = () => {
     dispatch(logoutUser())
       .then(() => {
-        window.location.reload();
+        navigate('/');
       });
   };
   useEffect(() => {
