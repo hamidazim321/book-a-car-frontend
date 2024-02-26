@@ -46,7 +46,7 @@ const authSlice = createSlice({
       .addCase(signupUser.fulfilled, (state, action) => ({
         ...state,
         loading: false,
-        success: `Welcome ${action.payload.status.data.user.name}!`,
+        success: `Welcome ${action.payload.data.user.name}!`,
       }))
       .addCase(signupUser.rejected, (state, action) => ({
         ...state,
@@ -72,6 +72,5 @@ const authSlice = createSlice({
   },
 });
 
-export const selectUser = (state) => state.auth.user;
 export const { clearAuthMessages } = authSlice.actions;
 export default authSlice.reducer;
