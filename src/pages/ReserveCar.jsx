@@ -83,7 +83,7 @@ const ReserveCar = () => {
             <option value="not-listed">Not listed?</option>
           </select>
           {cityInput && (
-            <input type="text" placeholder="Enter your city" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" name="city" />
+            <input type="text" placeholder="Enter your city" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 mt-2" name="city" />
           )}
         </div>
         <button type="submit" className="md:w-60 lg:w-52 text-lime-custom bg-white hover:bg-opacity-90 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-2 py-2 focus:outline-none">Book Now</button>
