@@ -5,6 +5,7 @@ import { getUser } from '../helpers/storage';
 import getFormData from '../helpers/getFormData';
 import { createReservation } from '../redux/reservations/reservationsThunk';
 import { fetchCars } from '../redux/car/carThunk';
+import { majorCities } from '../helpers/staticSharedVariables';
 
 const ReserveCar = () => {
   const { id } = useParams();
@@ -55,7 +56,6 @@ const ReserveCar = () => {
           <div>
             <select name="car_id" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500">
               <option value="">Select a car</option>
-              {console.log(cars)}
               {cars.map((car) => (
                 <option key={car.id} value={car.id}>{car.name}</option>
               ))}
@@ -66,7 +66,12 @@ const ReserveCar = () => {
           <input type="date" placeholder="Date" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" name="date" />
         </div>
         <div>
-          <input type="text" placeholder="City" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" name="city" />
+          <select name="city" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500">
+            <option value="">Select a city</option>
+            {majorCities.map((city) => (
+              <option key={city} value={city}>{city}</option>
+            ))}
+          </select>
         </div>
         <button type="submit" className="md:w-60 lg:w-52 text-lime-custom bg-white hover:bg-opacity-90 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-2 py-2 focus:outline-none">Book Now</button>
       </form>
