@@ -1,12 +1,21 @@
-import { useParams } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { getUser } from '../helpers/storage';
 import getFormData from '../helpers/getFormData';
 import { createReservation } from '../redux/reservations/reservationsThunk';
+import { fetchCars } from '../redux/car/carThunk';
+import { majorCities } from '../helpers/staticSharedVariables';
 
 const ReserveCar = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { cars } = useSelector((state) => state.car);
+
+  useEffect(() => {
+    dispatch(fetchCars());
+  }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,8 +23,17 @@ const ReserveCar = () => {
     dispatch(createReservation(formData))
       .then(() => {
         e.target.reset();
-        // navigate('/reservations');
+        navigate('/my-reservations');
       });
+  };
+
+  const [cityInput, setCityInput] = useState(false);
+  const handleCityChange = (e) => {
+    if (e.target.value === 'not-listed') {
+      setCityInput(true);
+    } else {
+      setCityInput(false);
+    }
   };
 
   return (
@@ -38,16 +56,35 @@ const ReserveCar = () => {
           <input type="hidden" value={getUser().id} name="user_id" />
         </div>
         {id && (<input type="hidden" value={id} name="car_id" />)}
-        {!id && (
+        {!id && cars.length === 0 && (
           <div>
             <input type="text" placeholder="Car ID" className="block w-full md:w-20 p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" name="car_id" />
           </div>
         )}
+        {!id && cars.length > 0 && (
+          <div>
+            <select required name="car_id" className="block w-full md:min-w-max p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500">
+              <option value="" disabled selected>Select a car</option>
+              {cars.map((car) => (
+                <option key={car.id} value={car.id}>{car.name}</option>
+              ))}
+            </select>
+          </div>
+        )}
         <div>
-          <input type="date" placeholder="Date" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" name="date" />
+          <input required type="date" placeholder="Date" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" name="date" />
         </div>
         <div>
-          <input type="text" placeholder="City" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" name="city" />
+          <select required name="city" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" onChange={handleCityChange}>
+            <option value="" disabled selected>Select a city</option>
+            {majorCities.map((city) => (
+              <option key={city} value={city}>{city}</option>
+            ))}
+            <option value="not-listed">Not listed?</option>
+          </select>
+          {cityInput && (
+            <input required type="text" placeholder="Enter your city" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 mt-2" name="city" />
+          )}
         </div>
         <button type="submit" className="md:w-60 lg:w-52 text-lime-custom bg-white hover:bg-opacity-90 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-2 py-2 focus:outline-none">Book Now</button>
       </form>
