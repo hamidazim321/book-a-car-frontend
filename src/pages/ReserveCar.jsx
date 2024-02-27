@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getUser } from '../helpers/storage';
 import getFormData from '../helpers/getFormData';
 import { createReservation } from '../redux/reservations/reservationsThunk';
@@ -25,6 +25,15 @@ const ReserveCar = () => {
         e.target.reset();
         navigate('/my-reservations');
       });
+  };
+
+  const [cityInput, setCityInput] = useState(false);
+  const handleCityChange = (e) => {
+    if (e.target.value === 'not-listed') {
+      setCityInput(true);
+    } else {
+      setCityInput(false);
+    }
   };
 
   return (
@@ -66,12 +75,16 @@ const ReserveCar = () => {
           <input type="date" placeholder="Date" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" name="date" />
         </div>
         <div>
-          <select name="city" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500">
+          <select name="city" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" onChange={handleCityChange}>
             <option value="">Select a city</option>
             {majorCities.map((city) => (
               <option key={city} value={city}>{city}</option>
             ))}
+            <option value="not-listed">Not listed?</option>
           </select>
+          {cityInput && (
+            <input type="text" placeholder="Enter your city" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" name="city" />
+          )}
         </div>
         <button type="submit" className="md:w-60 lg:w-52 text-lime-custom bg-white hover:bg-opacity-90 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-2 py-2 focus:outline-none">Book Now</button>
       </form>
