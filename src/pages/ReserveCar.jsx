@@ -63,8 +63,8 @@ const ReserveCar = () => {
         )}
         {!id && cars.length > 0 && (
           <div>
-            <select name="car_id" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500">
-              <option value="">Select a car</option>
+            <select required name="car_id" className="block w-full md:min-w-max p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500">
+              <option value="" disabled selected>Select a car</option>
               {cars.map((car) => (
                 <option key={car.id} value={car.id}>{car.name}</option>
               ))}
@@ -72,18 +72,18 @@ const ReserveCar = () => {
           </div>
         )}
         <div>
-          <input type="date" placeholder="Date" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" name="date" />
+          <input required type="date" placeholder="Date" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" name="date" />
         </div>
         <div>
-          <select name="city" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" onChange={handleCityChange}>
-            <option value="">Select a city</option>
+          <select required name="city" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500" onChange={handleCityChange}>
+            <option value="" disabled selected>Select a city</option>
             {majorCities.map((city) => (
               <option key={city} value={city}>{city}</option>
             ))}
             <option value="not-listed">Not listed?</option>
           </select>
           {cityInput && (
-            <input type="text" placeholder="Enter your city" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 mt-2" name="city" />
+            <input required type="text" placeholder="Enter your city" className="block w-full p-2 text-gray-900 border border-gray-300 rounded-full bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 mt-2" name="city" />
           )}
         </div>
         <button type="submit" className="md:w-60 lg:w-52 text-lime-custom bg-white hover:bg-opacity-90 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-2 py-2 focus:outline-none">Book Now</button>
