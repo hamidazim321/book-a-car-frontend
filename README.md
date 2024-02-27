@@ -82,8 +82,9 @@ Install Ruby, Ruby on Rails and Node on your local machine
 ### Install
 
 Install this project with:
-
-```git clone git@github.com:hamidazim321/hello-rails-frontend.git```
+```git clone git@github.com:hamidazim321/hello-rails-frontend.git``` <br />
+Install all project dependencies with:
+```npm install```
 
 ### Run
 Run `npm start``` to start the front end of the project
@@ -148,7 +149,7 @@ If you like this project follow me on the social accounts above to be notified o
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank Microverse for the opportunity
+I would like to thank Microverse for the opportunity and [Murat Korkmaz](https://www.behance.net/muratk) for the [Design](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
