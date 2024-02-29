@@ -3,9 +3,10 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaChevronLeft } from 'react-icons/fa';
 import { getToken, removeLogin } from '../helpers/storage';
+import APIURL from '../helpers/staticSharedVariables';
 
 const CarDetailPage = () => {
-  const BASE_URL = 'http://127.0.0.1:3001/api/v1';
+  const BASE_URL = APIURL();
   const CARS_PATH = '/cars';
   const navigate = useNavigate();
   const headers = {

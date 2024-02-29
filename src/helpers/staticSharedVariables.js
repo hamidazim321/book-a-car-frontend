@@ -1,4 +1,4 @@
-const APIURL = () => (process.env.NODE_ENV === 'development' ? 'http://localhost:3001/api/v1' : 'https://book-a-car.onrender.com');
+const APIURL = () => (process.env.NODE_ENV === 'development' ? 'http://localhost:3001/api/v1' : 'https://bookcar-gvqw.onrender.com/api/v1');
 
 export const majorCities = [
   // This list is created with help of AI

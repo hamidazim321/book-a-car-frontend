@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { getToken, removeLogin } from '../../helpers/storage';
+import APIURL from '../../helpers/staticSharedVariables';
 
-const BASE_URL = 'http://127.0.0.1:3001/api/v1';
+const BASE_URL = APIURL();
 const CARS_PATH = '/cars';
 
 const getHeaders = () => (
