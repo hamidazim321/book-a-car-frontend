@@ -6,6 +6,7 @@
     - [Key Features](#key-features)
     - [Back End](#back-end)
     - [Kanban Board](#kanban-board)
+    - [🚀Live preview](#live)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -64,7 +65,9 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+### 🚀 Live preview <a name="live"></a>
+[Click here to visit live preview](https://book-a-car-frontend.onrender.com/)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
